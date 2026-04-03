@@ -39,6 +39,10 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* === HERO === */
   .hero {
     background: var(--navy);
@@ -114,10 +118,54 @@
     color: var(--gold-light);
     font-weight: 500;
   }
+  .hero-update {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 12px;
+    border: 1px solid rgba(223,200,138,0.28);
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(250,247,240,0.72);
+    background: rgba(255,255,255,0.04);
+  }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === QUICK NAV === */
+  .quick-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(250,247,240,0.9);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .quick-nav-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .quick-nav a {
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .quick-nav a:hover,
+  .quick-nav a:focus-visible {
+    background: rgba(13,27,42,0.08);
+    color: var(--navy);
   }
 
   /* === INTRO === */
@@ -132,6 +180,44 @@
     font-size: 15px;
     line-height: 2;
     color: var(--ink-light);
+  }
+  .filter-bar {
+    max-width: 860px;
+    margin: 0 auto 28px;
+    padding: 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .filter-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .filter-select {
+    appearance: none;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: var(--paper);
+    color: var(--navy);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  .filter-note {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .filter-empty {
+    display: none;
+    max-width: 860px;
+    margin: 0 auto 32px;
+    padding: 0 24px;
+    font-size: 14px;
+    color: var(--ink-muted);
   }
 
   /* === MAIN === */
@@ -176,6 +262,12 @@
     color: var(--ink-muted);
     font-style: italic;
     white-space: nowrap;
+  }
+  .tier-intro {
+    margin: -10px 0 20px;
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--ink-muted);
   }
 
   /* === FILM CARD === */
@@ -230,6 +322,23 @@
     text-decoration-color: var(--gold);
     text-underline-offset: 3px;
   }
+  .film-link::after {
+    content: '豆瓣';
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    color: var(--gold-dark);
+    border: 1px solid rgba(197,165,90,0.35);
+    border-radius: 999px;
+    padding: 1px 6px;
+    opacity: 0;
+    transform: translateY(-1px);
+    transition: opacity 0.2s ease;
+  }
+  .film-link:hover::after,
+  .film-link:focus-visible::after {
+    opacity: 1;
+  }
   .film-cn {
     font-family: 'Noto Serif SC', serif;
     font-weight: 600;
@@ -255,9 +364,9 @@
     font-weight: 500;
   }
   .film-note {
-    font-size: 13.5px;
+    font-size: 14px;
     line-height: 1.85;
-    color: var(--ink-muted);
+    color: #626262;
     border-top: 1px solid rgba(0,0,0,0.05);
     padding-top: 10px;
     margin-top: 4px;
@@ -324,6 +433,30 @@
     line-height: 1.8;
     color: rgba(250,247,240,0.7);
   }
+  .festival-side {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 24px;
+  }
+  .ruled-out {
+    background: var(--paper);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 6px;
+    padding: 32px 28px;
+  }
+  .ruled-out h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .ruled-out p {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--ink-light);
+  }
 
   /* === SUMMARY === */
   .summary {
@@ -345,7 +478,27 @@
     font-size: 14.5px;
     line-height: 2.1;
     color: var(--ink-light);
-    text-align: justify;
+    text-align: left;
+  }
+
+  .back-top {
+    text-align: center;
+    margin-top: 28px;
+  }
+  .back-top a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0,0,0,0.18);
+    padding-bottom: 2px;
+  }
+  .back-top a:hover,
+  .back-top a:focus-visible {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
   }
 
   /* === FOOTER === */
@@ -366,11 +519,15 @@
   /* === RESPONSIVE === */
   @media (max-width: 640px) {
     .hero { padding: 56px 20px 44px; }
+    .quick-nav-inner { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding: 12px 20px; }
+    .filter-bar { align-items: stretch; }
+    .filter-select { width: 100%; }
     .film-card { padding: 20px 20px 20px 24px; margin-left: 14px; }
     .film-card .rank { left: -12px; width: 24px; height: 24px; font-size: 11px; top: 18px; }
     .tier-header { margin: 40px 0 20px; }
     .non-comp { padding: 28px 20px; }
     .non-comp-grid { grid-template-columns: 1fr; }
+    .festival-side { grid-template-columns: 1fr; }
   }
 
   @media print {
@@ -381,7 +538,7 @@
   }
 </style>
 </head>
-<body>
+<body id="top">
 
 <!-- HERO -->
 <header class="hero">
@@ -394,24 +551,64 @@
     评审团主席：<strong>朴赞郁</strong> &nbsp;｜&nbsp; 开幕片：<strong>《电气维纳斯》</strong>皮埃尔·萨尔瓦多里<br>
     荣誉金棕榈：<strong>彼得·杰克逊</strong> · <strong>芭芭拉·史翠珊</strong>
   </div>
+  <div class="hero-update">最后更新：2026年4月3日</div>
 </header>
+
+<nav class="quick-nav" aria-label="页面导航">
+  <div class="quick-nav-inner">
+    <a href="#tier-1">第一梯队</a>
+    <a href="#tier-2">第二梯队</a>
+    <a href="#tier-3">第三梯队</a>
+    <a href="#tier-4">第四梯队</a>
+    <a href="#tier-5">第五梯队</a>
+    <a href="#festival-side">场外关注</a>
+    <a href="#summary">总结</a>
+  </div>
+</nav>
 
 <!-- INTRO -->
 <section class="intro">
   <p>综合 Variety、The Hollywood Reporter、Screen Daily、Deadline、IndieWire、IONCINEMA 等多家媒体报道，本文对2026年戛纳主竞赛单元可能入选的影片进行综合预测与排名。官方片单将于4月9日公布，以下内容基于截至4月初各方信息的分析判断。</p>
 </section>
 
+<div class="filter-bar" aria-label="筛选工具">
+  <span class="filter-label">按国别筛选</span>
+  <select class="filter-select" id="country-filter">
+    <option value="all">全部国家</option>
+    <option value="西班牙">西班牙</option>
+    <option value="罗马尼亚">罗马尼亚</option>
+    <option value="日本">日本</option>
+    <option value="伊朗">伊朗</option>
+    <option value="法国">法国</option>
+    <option value="俄罗斯">俄罗斯</option>
+    <option value="丹麦">丹麦</option>
+    <option value="奥地利">奥地利</option>
+    <option value="波兰">波兰</option>
+    <option value="美国">美国</option>
+    <option value="比利时">比利时</option>
+    <option value="韩国">韩国</option>
+    <option value="突尼斯">突尼斯</option>
+    <option value="意大利">意大利</option>
+    <option value="匈牙利">匈牙利</option>
+    <option value="冰岛">冰岛</option>
+    <option value="英国">英国</option>
+  </select>
+  <span class="filter-note">按导演主要所属国家归类</span>
+</div>
+<div class="filter-empty" id="filter-empty">当前筛选下没有匹配影片。</div>
+
 <!-- MAIN -->
 <div class="main">
 
   <!-- TIER 1 -->
-  <div class="tier-header">
+  <div class="tier-header" id="tier-1">
     <div class="tier-badge" style="background:var(--tier1);">I</div>
     <h2>第一梯队：几乎确定入选</h2>
     <span class="tier-hint">6 部</span>
   </div>
+  <p class="tier-intro">这组影片的共同特点是完成度与参赛信号都相对明确，导演与戛纳的关系也足够稳，除非临时转去其他电影节或出现技术问题，否则进入主竞赛的概率最高。</p>
 
-  <div class="film-card">
+  <div class="film-card" data-country="西班牙">
     <div class="rank">1</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Bitter%20Christmas&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -430,7 +627,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="罗马尼亚">
     <div class="rank">2</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Fjord&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -449,7 +646,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="日本">
     <div class="rank">3</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=All%20of%20a%20Sudden&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -467,7 +664,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="伊朗">
     <div class="rank">4</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Parallel%20Tales&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -485,7 +682,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="日本">
     <div class="rank">5</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Sheep%20in%20the%20Box&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -503,7 +700,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="法国">
     <div class="rank">6</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Un%20Bon%20Petit%20Soldat&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -522,13 +719,14 @@
   </div>
 
   <!-- TIER 2 -->
-  <div class="tier-header">
+  <div class="tier-header" id="tier-2">
     <div class="tier-badge" style="background:var(--tier2);">II</div>
     <h2>第二梯队：大概率入选</h2>
     <span class="tier-hint">6 部</span>
   </div>
+  <p class="tier-intro">这一组整体声量很强，业内讨论度也高，但仍存在节展策略、最终完成时间或单元归属上的轻微摇摆。</p>
 
-  <div class="film-card">
+  <div class="film-card" data-country="俄罗斯">
     <div class="rank">7</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Minotaur&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -546,7 +744,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="丹麦">
     <div class="rank">8</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Her%20Private%20Hell&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -564,7 +762,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="奥地利">
     <div class="rank">9</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Gentle%20Monster&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -579,7 +777,7 @@
     <div class="film-note">《束身衣》导演从"一种关注"升级主竞赛的强力候选。mk2 Films代理——该公司去年刚将金棕榈得主送进戛纳。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="西班牙">
     <div class="rank">10</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=The%20Beloved&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -594,7 +792,7 @@
     <div class="film-note">父女疏离题材。索罗戈延近年势头强劲，巴登是戛纳影帝级演员。影片已完成，随时可以参展。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="法国">
     <div class="rank">11</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Full%20Phil&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -609,7 +807,7 @@
     <div class="film-note">"地狱版《艾米丽在巴黎》"——美国富豪在巴黎试图与女儿重建关系的荒诞喜剧。杜皮约是戛纳常客，新片规格明显升级。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="美国">
     <div class="rank">12</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Paper%20Tiger&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -628,13 +826,14 @@
   </div>
 
   <!-- TIER 3 -->
-  <div class="tier-header">
+  <div class="tier-header" id="tier-3">
     <div class="tier-badge" style="background:var(--tier3);">III</div>
     <h2>第三梯队：强有力竞争者，存在变数</h2>
     <span class="tier-hint">6 部</span>
   </div>
+  <p class="tier-intro">这批影片的作者能量并不弱，真正的分水岭通常在后期周期、剪辑复杂度和导演是否愿意再多等一个节展窗口。</p>
 
-  <div class="film-card">
+  <div class="film-card" data-country="波兰">
     <div class="rank">13</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=1949&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -653,7 +852,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="美国">
     <div class="rank">14</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Jack%20of%20Spades&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -672,7 +871,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="比利时">
     <div class="rank">15</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Coward&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -689,7 +888,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="韩国">
     <div class="rank">16</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Hope&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -708,7 +907,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="丹麦">
     <div class="rank">17</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=After&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -727,7 +926,7 @@
     </div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="西班牙">
     <div class="rank">18</div>
     <div class="film-title-row">
       <a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Out%20of%20This%20World&amp;cat=1002" target="_blank" rel="noreferrer noopener">
@@ -747,34 +946,35 @@
   </div>
 
   <!-- TIER 4 -->
-  <div class="tier-header">
+  <div class="tier-header" id="tier-4">
     <div class="tier-badge" style="background:var(--tier4);">IV</div>
     <h2>第四梯队：很可能入选（主竞赛或其他单元）</h2>
     <span class="tier-hint">7 部</span>
   </div>
+  <p class="tier-intro">这些项目未必能挤进主竞赛，但进入官方选择的可能性仍然不低，尤其适合被理解为“主竞赛边缘片”或“其他单元种子选手”。</p>
 
-  <div class="film-card">
+  <div class="film-card" data-country="法国">
     <div class="rank">19</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Roma%20Elastica&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">弹性罗马</span><span class="film-en">Roma Elastica</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>贝特朗·芒迪科</span><span><span class="label">主演：</span>歌迪亚、梅兰特、尼罗、穆蒂</span></div>
     <div class="film-note">向1980年代意大利电影黄金时代致敬，IONCINEMA预测可能直接进主竞赛而非午夜场。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="法国">
     <div class="rank">20</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=L%27Inconnue&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">陌生女人</span><span class="film-en">L'Inconnue</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>阿瑟·阿拉里</span><span><span class="label">主演：</span>赛杜、施内德</span></div>
     <div class="film-note">改编自图像小说《大卫·齐默曼事件》，被多家法国媒体点名为金棕榈潜力股。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="突尼斯">
     <div class="rank">21</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Mimesis&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">模仿</span><span class="film-en">Mimesis</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>考瑟·本·哈尼亚 Kaouther Ben Hania</span></div>
     <div class="film-note">《欣德·拉贾卜之声》导演新作，该片仍在北美创造票房佳绩（超90万美元）。The Party Film Sales代理。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="比利时">
     <div class="rank">22</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Let%20Love%20In&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">放手去爱</span><span class="film-en">Let Love In</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>费利克斯·范·赫罗宁根</span><span><span class="label">主演：</span>马里内利</span></div>
@@ -782,7 +982,7 @@
     <div class="tags"><span class="tag tag-risk">后期紧迫</span></div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="俄罗斯">
     <div class="rank">23</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Butterfly%20Jam&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">蝴蝶果酱</span><span class="film-en">Butterfly Jam</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>坎泰米尔·巴拉戈夫 Kantemir Balagov</span></div>
@@ -790,14 +990,14 @@
     <div class="tags"><span class="tag tag-debut">英语处女作</span></div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="法国">
     <div class="rank">24</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Histoire%20de%20la%20nuit&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">夜的故事</span><span class="film-en">Histoire de la nuit</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>蕾雅·米西乌斯</span><span><span class="label">主演：</span>赫尔齐、贝鲁奇、马吉梅尔</span></div>
     <div class="film-note">法国新生代导演力量。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="美国">
     <div class="rank">25</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Teenage%20Sex%20and%20Death%20at%20Camp%20Miasma&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">米亚斯玛营地的少年性与死亡</span><span class="film-en">Teenage Sex and Death at Camp Miasma</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>简·舍恩布伦</span><span><span class="label">主演：</span>艾恩宾德、安德森</span></div>
@@ -805,27 +1005,28 @@
   </div>
 
   <!-- TIER 5 -->
-  <div class="tier-header">
+  <div class="tier-header" id="tier-5">
     <div class="tier-badge" style="background:var(--tier5);">V</div>
     <h2>第五梯队：有机会但变数较大</h2>
     <span class="tier-hint">8 部</span>
   </div>
+  <p class="tier-intro">这一组更多是基于导演履历、题材分量或媒体点名进入观察名单，但无论是后期进度还是节展路线，目前都还没有足够确定。</p>
 
-  <div class="film-card">
+  <div class="film-card" data-country="法国">
     <div class="rank">26</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Bunker&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">掩体</span><span class="film-en">Bunker</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>弗洛里安·泽勒</span><span><span class="label">主演：</span>克鲁兹、巴登、达诺</span></div>
     <div class="film-note">刚杀青进入后期，时间线更适合威尼斯。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="意大利">
     <div class="rank">27</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=It%20Will%20Happen%20Tonight&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">今晚将发生</span><span class="film-en">It Will Happen Tonight</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>南尼·莫莱蒂 Nanni Moretti</span></div>
     <div class="film-note">据报因导演健康问题可能无法按时完成。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="美国">
     <div class="rank">28</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=The%20Way%20of%20the%20Wind&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">风的方向</span><span class="film-en">The Way of the Wind</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>泰伦斯·马力克 Terrence Malick</span></div>
@@ -833,35 +1034,35 @@
     <div class="tags"><span class="tag tag-palme">金棕榈得主</span><span class="tag tag-risk">永恒的后期中</span></div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="奥地利">
     <div class="rank">29</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Everything&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">每一次</span><span class="film-en">Everything</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>桑德拉·沃尔纳 Sandra Wollner</span></div>
     <div class="film-note">奥地利新锐女导演，IONCINEMA看好其进入主竞赛。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="法国">
     <div class="rank">30</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=A%20Place%20to%20Heal&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">疗愈之地</span><span class="film-en">A Place to Heal</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>塞德里克·卡恩 Cédric Kahn</span></div>
     <div class="film-note">青少年精神科题材，卡恩自2001年以来未进过主竞赛。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="冰岛">
     <div class="rank">31</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=On%20Land%20and%20Sea&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">陆地与海洋</span><span class="film-en">On Land and Sea</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>赫里努尔·帕尔马松 Hlynur Pálmason</span></div>
     <div class="film-note">冰岛导演新作，后期进度不明。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="匈牙利">
     <div class="rank">32</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=Moulin&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">磨坊</span><span class="film-en">Moulin</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>拉斯洛·内梅什 László Nemes</span></div>
     <div class="film-note">《索尔之子》金棕榈得主新作，后期进度不明。</div>
   </div>
 
-  <div class="film-card">
+  <div class="film-card" data-country="英国">
     <div class="rank">33</div>
     <div class="film-title-row"><a class="film-link" href="https://search.douban.com/movie/subject_search?search_text=The%20Long%20Winter&amp;cat=1002" target="_blank" rel="noreferrer noopener"><span class="film-cn">漫长的冬天</span><span class="film-en">The Long Winter</span></a></div>
     <div class="film-meta"><span><span class="label">导演：</span>安德鲁·海格 Andrew Haigh</span></div>
@@ -869,32 +1070,39 @@
   </div>
 
   <!-- NON-COMPETITION -->
-  <div class="non-comp">
-    <h2>场外关注 · 非竞赛 · 确定不来</h2>
-    <div class="non-comp-grid">
-      <div class="non-comp-item">
-        <h3>开幕片（已确认）</h3>
-        <p>《电气维纳斯》La Vénus Électrique<br>皮埃尔·萨尔瓦多里执导<br>吉尔·勒卢什、皮奥·马尔马伊主演</p>
-      </div>
-      <div class="non-comp-item">
-        <h3>荣誉金棕榈</h3>
-        <p>彼得·杰克逊（《指环王》系列）<br>芭芭拉·史翠珊</p>
-      </div>
-      <div class="non-comp-item">
-        <h3>非竞赛潜力</h3>
-        <p>《戴高乐》De Gaulle（波德里执导）<br>《献祭》Sacrifice（泰勒-乔伊、埃文斯、查莉XCX主演）</p>
-      </div>
-      <div class="non-comp-item">
-        <h3>确定不来戛纳</h3>
-        <p>《揭秘日》斯皮尔伯格 → 院线首映<br>《掘者》伊纳里图/克鲁斯 → 威尼斯<br>《奥德赛》诺兰 → 不走电影节<br>《娱乐系统瘫痪了》奥斯特伦德 → 2027</p>
+  <div class="festival-side" id="festival-side">
+    <div class="non-comp">
+      <h2>场外关注 · 非竞赛</h2>
+      <div class="non-comp-grid">
+        <div class="non-comp-item">
+          <h3>开幕片（已确认）</h3>
+          <p>《电气维纳斯》La Vénus Électrique<br>皮埃尔·萨尔瓦多里执导<br>吉尔·勒卢什、皮奥·马尔马伊主演</p>
+        </div>
+        <div class="non-comp-item">
+          <h3>荣誉金棕榈</h3>
+          <p>彼得·杰克逊（《指环王》系列）<br>芭芭拉·史翠珊</p>
+        </div>
+        <div class="non-comp-item">
+          <h3>非竞赛潜力</h3>
+          <p>《戴高乐》De Gaulle（波德里执导）<br>《献祭》Sacrifice（泰勒-乔伊、埃文斯、查莉XCX主演）</p>
+        </div>
       </div>
     </div>
+
+    <aside class="ruled-out">
+      <h2>基本确定不来戛纳</h2>
+      <p>《揭秘日》斯皮尔伯格 → 院线首映<br>
+      《掘者》伊纳里图 / 克鲁斯 → 威尼斯路线更强<br>
+      《奥德赛》诺兰 → 不走电影节<br>
+      《娱乐系统瘫痪了》奥斯特伦德 → 推迟至 2027</p>
+    </aside>
   </div>
 
   <!-- SUMMARY -->
-  <div class="summary">
+  <div class="summary" id="summary">
     <h2>总结</h2>
     <p>今年戛纳虽然缺少好莱坞大片压阵，但作者导演的含金量极高。仅金棕榈/重要大奖得主级别就有阿莫多瓦、蒙吉、是枝裕和、冯·提尔、科恩等一串名字，加上法哈蒂、兹维亚金采夫、滨口龙介、罗泓轸等各国中坚力量，以及东特、巴拉戈夫等新生代，阵容厚度相当可观。最大的悬念在于多部影片的后期进度——帕夫利科夫斯基、科恩、罗泓轸、冯·提尔的片子能否如期完成，将直接影响最终片单的面貌。正如弗雷莫所言，戛纳"除了电影本身，不依赖任何东西"。</p>
+    <div class="back-top"><a href="#top">返回顶部</a></div>
   </div>
 
 </div>
@@ -905,6 +1113,55 @@
   信息来源：Variety · The Hollywood Reporter · Screen Daily · Deadline · IndieWire · IONCINEMA · Awards Radar · Numéro<br>
   本预测为非官方整理，官方片单以2026年4月9日戛纳新闻发布会公布为准。
 </footer>
+
+<script>
+  (function () {
+    const filter = document.getElementById('country-filter');
+    const emptyState = document.getElementById('filter-empty');
+    const cards = Array.from(document.querySelectorAll('.film-card[data-country]'));
+    const tierHeaders = Array.from(document.querySelectorAll('.tier-header'));
+
+    function getTierCards(header) {
+      const tierCards = [];
+      let next = header.nextElementSibling;
+
+      while (next && !next.classList.contains('tier-header') && !next.classList.contains('festival-side')) {
+        if (next.classList.contains('film-card')) {
+          tierCards.push(next);
+        }
+        next = next.nextElementSibling;
+      }
+
+      return tierCards;
+    }
+
+    function applyFilter() {
+      const selected = filter.value;
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const matches = selected === 'all' || card.dataset.country === selected;
+        card.style.display = matches ? '' : 'none';
+        if (matches) visibleCount += 1;
+      });
+
+      tierHeaders.forEach((header) => {
+        const intro = header.nextElementSibling && header.nextElementSibling.classList.contains('tier-intro')
+          ? header.nextElementSibling
+          : null;
+        const tierCards = getTierCards(header);
+        const hasVisibleCards = tierCards.some((card) => card.style.display !== 'none');
+        header.style.display = hasVisibleCards ? '' : 'none';
+        if (intro) intro.style.display = hasVisibleCards ? '' : 'none';
+      });
+
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    filter.addEventListener('change', applyFilter);
+    applyFilter();
+  }());
+</script>
 
 </body>
 </html>
