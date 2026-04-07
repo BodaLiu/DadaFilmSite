@@ -344,6 +344,18 @@
   .film-list {
     display: grid;
     gap: 12px;
+    max-height: 760px;
+    overflow: auto;
+    padding-right: 6px;
+    margin-top: 12px;
+  }
+
+  .film-list-header {
+    margin: 4px 0 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
   }
 
   .film-item {
@@ -523,6 +535,7 @@
           </div>
         </div>
 
+        <div class="film-list-header">Full ranking by Letterboxd rating</div>
         <div class="film-list" id="film-list"></div>
 
         <div class="note">These figures reflect Letterboxd user ratings collected on April 7, 2026. They are intended as an audience-response snapshot rather than an official festival assessment.</div>
@@ -584,7 +597,7 @@
           const mean = ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
           const topFilm = [...films].sort(byRatingDesc)[0];
           const bottomFilm = [...films].sort(byRatingAsc)[0];
-          const topThree = [...films].sort(byRatingDesc).slice(0, 3);
+          const rankedFilms = [...films].sort(byRatingDesc);
 
           return {
             year: Number(year),
@@ -597,7 +610,7 @@
             palmeWinner: palmeWinners[Number(year)] || 'N/A',
             topFilm,
             bottomFilm,
-            topThree
+            rankedFilms
           };
         })
         .sort((a, b) => b.meanRating - a.meanRating || b.medianRating - a.medianRating || b.maxRating - a.maxRating)
@@ -808,11 +821,9 @@
       document.getElementById('detail-range').textContent = `${round(entry.minRating)} - ${round(entry.maxRating)}`;
 
       const list = document.getElementById('film-list');
-      const best = entry.topFilm;
-      const worst = entry.bottomFilm;
-      const topThree = entry.topThree.map((film, index) => `
+      const rankedFilms = entry.rankedFilms.map((film, index) => `
         <div class="film-item">
-          <div class="film-rank">Top ${index + 1}</div>
+          <div class="film-rank">#${index + 1}</div>
           <div class="film-title">${film.title}</div>
           <div class="film-meta">Rating ${round(film.rating)} · ${film.count.toLocaleString()} logs</div>
           <a class="film-link" href="${filmLink(film.slug)}" target="_blank" rel="noreferrer noopener">Open on Letterboxd</a>
@@ -820,19 +831,7 @@
       `).join('');
 
       list.innerHTML = `
-        <div class="film-item">
-          <div class="film-rank">Highest Rated</div>
-          <div class="film-title">${best.title}</div>
-          <div class="film-meta">Rating ${round(best.rating)} · ${best.count.toLocaleString()} logs</div>
-          <a class="film-link" href="${filmLink(best.slug)}" target="_blank" rel="noreferrer noopener">Open on Letterboxd</a>
-        </div>
-        <div class="film-item">
-          <div class="film-rank">Lowest Rated</div>
-          <div class="film-title">${worst.title}</div>
-          <div class="film-meta">Rating ${round(worst.rating)} · ${worst.count.toLocaleString()} logs</div>
-          <a class="film-link" href="${filmLink(worst.slug)}" target="_blank" rel="noreferrer noopener">Open on Letterboxd</a>
-        </div>
-        ${topThree}
+        ${rankedFilms}
       `;
     }
 
