@@ -1,0 +1,1115 @@
+{
+  "2016": {
+    "films": [
+      {
+        "title": "I, Daniel Blake",
+        "slug": "i-daniel-blake",
+        "rating": 4.04,
+        "count": 88560
+      },
+      {
+        "title": "American Honey",
+        "slug": "american-honey",
+        "rating": 3.77,
+        "count": 146091
+      },
+      {
+        "title": "Aquarius",
+        "slug": "aquarius",
+        "rating": 3.98,
+        "count": 60377
+      },
+      {
+        "title": "Elle",
+        "slug": "elle",
+        "rating": 3.7,
+        "count": 94276
+      },
+      {
+        "title": "From the Land of the Moon",
+        "slug": "from-the-land-of-the-moon",
+        "rating": 3.32,
+        "count": 4722
+      },
+      {
+        "title": "Graduation",
+        "slug": "graduation-2016",
+        "rating": 3.74,
+        "count": 13767
+      },
+      {
+        "title": "The Handmaiden",
+        "slug": "the-handmaiden",
+        "rating": 4.39,
+        "count": 771854
+      },
+      {
+        "title": "It&#039;s Only the End of the World",
+        "slug": "its-only-the-end-of-the-world",
+        "rating": 3.58,
+        "count": 64266
+      },
+      {
+        "title": "Julieta",
+        "slug": "julieta",
+        "rating": 3.62,
+        "count": 45529
+      },
+      {
+        "title": "The Last Face",
+        "slug": "the-last-face",
+        "rating": 2.27,
+        "count": 2557
+      },
+      {
+        "title": "Loving",
+        "slug": "loving-2016",
+        "rating": 3.53,
+        "count": 40263
+      },
+      {
+        "title": "Ma&#039; Rosa",
+        "slug": "ma-rosa",
+        "rating": 3.5,
+        "count": 2718
+      },
+      {
+        "title": "The Neon Demon",
+        "slug": "the-neon-demon",
+        "rating": 3.14,
+        "count": 302496
+      },
+      {
+        "title": "Paterson",
+        "slug": "paterson",
+        "rating": 3.88,
+        "count": 224785
+      },
+      {
+        "title": "Personal Shopper",
+        "slug": "personal-shopper",
+        "rating": 3.38,
+        "count": 102744
+      },
+      {
+        "title": "The Salesman",
+        "slug": "the-salesman-2016",
+        "rating": 3.84,
+        "count": 59173
+      },
+      {
+        "title": "Sieranevada",
+        "slug": "sieranevada",
+        "rating": 3.91,
+        "count": 6432
+      },
+      {
+        "title": "Slack Bay",
+        "slug": "slack-bay",
+        "rating": 3.28,
+        "count": 7881
+      },
+      {
+        "title": "Staying Vertical",
+        "slug": "staying-vertical",
+        "rating": 3.4,
+        "count": 4767
+      },
+      {
+        "title": "Toni Erdmann",
+        "slug": "toni-erdmann",
+        "rating": 3.96,
+        "count": 72870
+      },
+      {
+        "title": "The Unknown Girl",
+        "slug": "the-unknown-girl",
+        "rating": 3.39,
+        "count": 17416
+      }
+    ]
+  },
+  "2017": {
+    "films": [
+      {
+        "title": "The Square",
+        "slug": "the-square-2017",
+        "rating": 3.62,
+        "count": 142014
+      },
+      {
+        "title": "BPM (Beats per Minute)",
+        "slug": "bpm-beats-per-minute",
+        "rating": 3.99,
+        "count": 60894
+      },
+      {
+        "title": "Double Lover",
+        "slug": "double-lover",
+        "rating": 3.1,
+        "count": 17060
+      },
+      {
+        "title": "The Beguiled",
+        "slug": "the-beguiled-2017",
+        "rating": 3.34,
+        "count": 180114
+      },
+      {
+        "title": "The Day After",
+        "slug": "the-day-after-2017",
+        "rating": 3.72,
+        "count": 9463
+      },
+      {
+        "title": "A Gentle Creature",
+        "slug": "a-gentle-creature-2017",
+        "rating": 3.4,
+        "count": 1969
+      },
+      {
+        "title": "Good Time",
+        "slug": "good-time",
+        "rating": 3.98,
+        "count": 760749
+      },
+      {
+        "title": "Happy End",
+        "slug": "happy-end-2017",
+        "rating": 3.46,
+        "count": 29239
+      },
+      {
+        "title": "In the Fade",
+        "slug": "in-the-fade",
+        "rating": 3.6,
+        "count": 31039
+      },
+      {
+        "title": "Jupiter&#039;s Moon",
+        "slug": "jupiters-moon-2017",
+        "rating": 3.16,
+        "count": 3084
+      },
+      {
+        "title": "The Killing of a Sacred Deer",
+        "slug": "the-killing-of-a-sacred-deer",
+        "rating": 3.7,
+        "count": 796495
+      },
+      {
+        "title": "Loveless",
+        "slug": "loveless-2017",
+        "rating": 3.91,
+        "count": 44285
+      },
+      {
+        "title": "The Meyerowitz Stories (New and Selected)",
+        "slug": "the-meyerowitz-stories-new-and-selected",
+        "rating": 3.74,
+        "count": 153987
+      },
+      {
+        "title": "Okja",
+        "slug": "okja",
+        "rating": 3.71,
+        "count": 485655
+      },
+      {
+        "title": "Radiance",
+        "slug": "radiance-2017",
+        "rating": 3.43,
+        "count": 4240
+      },
+      {
+        "title": "Godard Mon Amour",
+        "slug": "godard-mon-amour",
+        "rating": 3.21,
+        "count": 17750
+      },
+      {
+        "title": "Rodin",
+        "slug": "rodin",
+        "rating": 2.71,
+        "count": 1462
+      },
+      {
+        "title": "Wonderstruck",
+        "slug": "wonderstruck",
+        "rating": 3.27,
+        "count": 14987
+      },
+      {
+        "title": "You Were Never Really Here",
+        "slug": "you-were-never-really-here",
+        "rating": 3.68,
+        "count": 271687
+      }
+    ]
+  },
+  "2018": {
+    "films": [
+      {
+        "title": "Shoplifters",
+        "slug": "shoplifters",
+        "rating": 4.3,
+        "count": 292203
+      },
+      {
+        "title": "At War",
+        "slug": "at-war",
+        "rating": 3.59,
+        "count": 3937
+      },
+      {
+        "title": "Everybody Knows",
+        "slug": "everybody-knows",
+        "rating": 3.35,
+        "count": 39124
+      },
+      {
+        "title": "Dogman",
+        "slug": "dogman-2018",
+        "rating": 3.75,
+        "count": 44512
+      },
+      {
+        "title": "The Image Book",
+        "slug": "the-image-book",
+        "rating": 3.44,
+        "count": 11489
+      },
+      {
+        "title": "Sorry Angel",
+        "slug": "sorry-angel",
+        "rating": 3.63,
+        "count": 10726
+      },
+      {
+        "title": "Happy as Lazzaro",
+        "slug": "happy-as-lazzaro",
+        "rating": 4.07,
+        "count": 83567
+      },
+      {
+        "title": "Girls of the Sun",
+        "slug": "girls-of-the-sun",
+        "rating": 3.36,
+        "count": 2614
+      },
+      {
+        "title": "Ash Is Purest White",
+        "slug": "ash-is-purest-white",
+        "rating": 3.82,
+        "count": 30651
+      },
+      {
+        "title": "Capernaum",
+        "slug": "capernaum",
+        "rating": 4.21,
+        "count": 127574
+      },
+      {
+        "title": "Burning",
+        "slug": "burning-2018",
+        "rating": 4.04,
+        "count": 314687
+      },
+      {
+        "title": "BlacKkKlansman",
+        "slug": "blackkklansman",
+        "rating": 3.94,
+        "count": 1146864
+      },
+      {
+        "title": "Under the Silver Lake",
+        "slug": "under-the-silver-lake",
+        "rating": 3.44,
+        "count": 273327
+      },
+      {
+        "title": "3 Faces",
+        "slug": "3-faces",
+        "rating": 3.59,
+        "count": 10740
+      },
+      {
+        "title": "Cold War",
+        "slug": "cold-war-2018",
+        "rating": 4.05,
+        "count": 177867
+      },
+      {
+        "title": "Yomeddine",
+        "slug": "yomeddine",
+        "rating": 3.59,
+        "count": 2214
+      },
+      {
+        "title": "Leto",
+        "slug": "leto",
+        "rating": 3.8,
+        "count": 18931
+      },
+      {
+        "title": "Asako I &amp; II",
+        "slug": "asako-i-ii",
+        "rating": 3.81,
+        "count": 37081
+      }
+    ]
+  },
+  "2019": {
+    "films": [
+      {
+        "title": "Parasite",
+        "slug": "parasite-2019",
+        "rating": 4.53,
+        "count": 5224302
+      },
+      {
+        "title": "Young Ahmed",
+        "slug": "young-ahmed",
+        "rating": 3.25,
+        "count": 9565
+      },
+      {
+        "title": "The Wild Goose Lake",
+        "slug": "the-wild-goose-lake",
+        "rating": 3.58,
+        "count": 23774
+      },
+      {
+        "title": "The Traitor",
+        "slug": "the-traitor-2019",
+        "rating": 3.66,
+        "count": 25365
+      },
+      {
+        "title": "Pain and Glory",
+        "slug": "pain-and-glory",
+        "rating": 4.06,
+        "count": 164357
+      },
+      {
+        "title": "Sorry We Missed You",
+        "slug": "sorry-we-missed-you",
+        "rating": 3.96,
+        "count": 48500
+      },
+      {
+        "title": "Sibyl",
+        "slug": "sibyl",
+        "rating": 3.32,
+        "count": 43805
+      },
+      {
+        "title": "Portrait of a Lady on Fire",
+        "slug": "portrait-of-a-lady-on-fire",
+        "rating": 4.42,
+        "count": 1065456
+      },
+      {
+        "title": "Once Upon a Time... in Hollywood",
+        "slug": "once-upon-a-time-in-hollywood",
+        "rating": 3.77,
+        "count": 3014875
+      },
+      {
+        "title": "Oh Mercy",
+        "slug": "oh-mercy",
+        "rating": 3.22,
+        "count": 6262
+      },
+      {
+        "title": "Mektoub, My Love: Intermezzo",
+        "slug": "mektoub-my-love-intermezzo",
+        "rating": 2.99,
+        "count": 678
+      },
+      {
+        "title": "Matthias &amp; Maxime",
+        "slug": "matthias-maxime",
+        "rating": 3.66,
+        "count": 70823
+      },
+      {
+        "title": "Little Joe",
+        "slug": "little-joe-2019",
+        "rating": 2.99,
+        "count": 20281
+      },
+      {
+        "title": "Les Misérables",
+        "slug": "les-miserables-2019",
+        "rating": 3.82,
+        "count": 84283
+      },
+      {
+        "title": "It Must Be Heaven",
+        "slug": "it-must-be-heaven",
+        "rating": 3.71,
+        "count": 14557
+      },
+      {
+        "title": "A Hidden Life",
+        "slug": "a-hidden-life-2019",
+        "rating": 4.07,
+        "count": 73015
+      },
+      {
+        "title": "The Whistlers",
+        "slug": "the-whistlers",
+        "rating": 3.26,
+        "count": 8678
+      },
+      {
+        "title": "Frankie",
+        "slug": "frankie-2019",
+        "rating": 2.97,
+        "count": 3865
+      },
+      {
+        "title": "The Dead Don&#039;t Die",
+        "slug": "the-dead-dont-die-2019",
+        "rating": 2.62,
+        "count": 230836
+      },
+      {
+        "title": "Bacurau",
+        "slug": "bacurau",
+        "rating": 3.92,
+        "count": 178224
+      },
+      {
+        "title": "Atlantics",
+        "slug": "atlantics-2019",
+        "rating": 3.69,
+        "count": 45247
+      }
+    ]
+  },
+  "2020": {
+    "films": []
+  },
+  "2021": {
+    "films": [
+      {
+        "title": "Titane",
+        "slug": "titane",
+        "rating": 3.56,
+        "count": 421630
+      },
+      {
+        "title": "The Worst Person in the World",
+        "slug": "the-worst-person-in-the-world",
+        "rating": 4.08,
+        "count": 927699
+      },
+      {
+        "title": "Drive My Car",
+        "slug": "drive-my-car",
+        "rating": 4.2,
+        "count": 375473
+      },
+      {
+        "title": "Paris, 13th District",
+        "slug": "paris-13th-district",
+        "rating": 3.57,
+        "count": 48925
+      },
+      {
+        "title": "Red Rocket",
+        "slug": "red-rocket-2021",
+        "rating": 3.83,
+        "count": 207073
+      },
+      {
+        "title": "A Hero",
+        "slug": "a-hero",
+        "rating": 3.78,
+        "count": 44957
+      },
+      {
+        "title": "The French Dispatch of the Liberty, Kansas Evening Sun",
+        "slug": "the-french-dispatch-of-the-liberty-kansas",
+        "rating": 3.66,
+        "count": 975334
+      },
+      {
+        "title": "Compartment No. 6",
+        "slug": "compartment-no-6",
+        "rating": 3.82,
+        "count": 49538
+      },
+      {
+        "title": "Annette",
+        "slug": "annette",
+        "rating": 3.38,
+        "count": 122479
+      },
+      {
+        "title": "The Divide",
+        "slug": "the-divide-2021-1",
+        "rating": 3.54,
+        "count": 6933
+      },
+      {
+        "title": "Bergman Island",
+        "slug": "bergman-island-2021",
+        "rating": 3.6,
+        "count": 52206
+      },
+      {
+        "title": "Memoria",
+        "slug": "memoria-2021",
+        "rating": 3.78,
+        "count": 66563
+      },
+      {
+        "title": "The Restless",
+        "slug": "the-restless-2021",
+        "rating": 3.45,
+        "count": 4095
+      },
+      {
+        "title": "Benedetta",
+        "slug": "benedetta",
+        "rating": 3.4,
+        "count": 114015
+      },
+      {
+        "title": "Nitram",
+        "slug": "nitram",
+        "rating": 3.67,
+        "count": 33964
+      },
+      {
+        "title": "Everything Went Fine",
+        "slug": "everything-went-fine",
+        "rating": 3.42,
+        "count": 5653
+      },
+      {
+        "title": "Petrov&#039;s Flu",
+        "slug": "petrovs-flu",
+        "rating": 3.69,
+        "count": 11408
+      },
+      {
+        "title": "Lingui, the Sacred Bonds",
+        "slug": "lingui-the-sacred-bonds",
+        "rating": 3.57,
+        "count": 5615
+      },
+      {
+        "title": "Casablanca Beats",
+        "slug": "casablanca-beats",
+        "rating": 2.92,
+        "count": 1980
+      },
+      {
+        "title": "Ahed&#039;s Knee",
+        "slug": "aheds-knee",
+        "rating": 3.36,
+        "count": 5184
+      }
+    ]
+  },
+  "2022": {
+    "films": [
+      {
+        "title": "Triangle of Sadness",
+        "slug": "triangle-of-sadness",
+        "rating": 3.69,
+        "count": 886801
+      },
+      {
+        "title": "Armageddon Time",
+        "slug": "armageddon-time",
+        "rating": 3.37,
+        "count": 59632
+      },
+      {
+        "title": "Cairo Conspiracy",
+        "slug": "cairo-conspiracy",
+        "rating": 3.57,
+        "count": 24169
+      },
+      {
+        "title": "Broker",
+        "slug": "broker-2022",
+        "rating": 3.78,
+        "count": 102924
+      },
+      {
+        "title": "Brother and Sister",
+        "slug": "brother-and-sister-2022",
+        "rating": 2.65,
+        "count": 4932
+      },
+      {
+        "title": "Close",
+        "slug": "close-2022",
+        "rating": 4.13,
+        "count": 491883
+      },
+      {
+        "title": "Crimes of the Future",
+        "slug": "crimes-of-the-future-2022",
+        "rating": 3.29,
+        "count": 222228
+      },
+      {
+        "title": "Decision to Leave",
+        "slug": "decision-to-leave",
+        "rating": 3.98,
+        "count": 393902
+      },
+      {
+        "title": "The Eight Mountains",
+        "slug": "the-eight-mountains",
+        "rating": 4.11,
+        "count": 59923
+      },
+      {
+        "title": "EO",
+        "slug": "eo",
+        "rating": 3.57,
+        "count": 91639
+      },
+      {
+        "title": "Forever Young",
+        "slug": "forever-young-2022",
+        "rating": 3.5,
+        "count": 15637
+      },
+      {
+        "title": "Holy Spider",
+        "slug": "holy-spider",
+        "rating": 3.62,
+        "count": 89603
+      },
+      {
+        "title": "Leila&#039;s Brothers",
+        "slug": "leilas-brothers",
+        "rating": 3.46,
+        "count": 30752
+      },
+      {
+        "title": "Mother and Son",
+        "slug": "mother-and-son-2022",
+        "rating": 3.41,
+        "count": 2026
+      },
+      {
+        "title": "Nostalgia",
+        "slug": "nostalgia-2022-1",
+        "rating": 3.36,
+        "count": 9969
+      },
+      {
+        "title": "Pacifiction",
+        "slug": "pacifiction",
+        "rating": 3.64,
+        "count": 22661
+      },
+      {
+        "title": "R.M.N.",
+        "slug": "rmn",
+        "rating": 3.76,
+        "count": 15967
+      },
+      {
+        "title": "Showing Up",
+        "slug": "showing-up-2022",
+        "rating": 3.52,
+        "count": 55899
+      },
+      {
+        "title": "Stars at Noon",
+        "slug": "stars-at-noon",
+        "rating": 2.98,
+        "count": 20541
+      },
+      {
+        "title": "Tchaikovsky&#039;s Wife",
+        "slug": "tchaikovskys-wife",
+        "rating": 3.41,
+        "count": 9121
+      },
+      {
+        "title": "Tori and Lokita",
+        "slug": "tori-and-lokita",
+        "rating": 3.57,
+        "count": 9896
+      }
+    ]
+  },
+  "2023": {
+    "films": [
+      {
+        "title": "Anatomy of a Fall",
+        "slug": "anatomy-of-a-fall",
+        "rating": 4.12,
+        "count": 1447428
+      },
+      {
+        "title": "About Dry Grasses",
+        "slug": "about-dry-grasses",
+        "rating": 4.02,
+        "count": 57212
+      },
+      {
+        "title": "Asteroid City",
+        "slug": "asteroid-city",
+        "rating": 3.47,
+        "count": 1077995
+      },
+      {
+        "title": "Banel &amp; Adama",
+        "slug": "banel-adama",
+        "rating": 3.35,
+        "count": 4202
+      },
+      {
+        "title": "Asphalt City",
+        "slug": "asphalt-city",
+        "rating": 3.04,
+        "count": 10939
+      },
+      {
+        "title": "A Brighter Tomorrow",
+        "slug": "a-brighter-tomorrow-2023",
+        "rating": 3.5,
+        "count": 25298
+      },
+      {
+        "title": "La Chimera",
+        "slug": "la-chimera",
+        "rating": 4.09,
+        "count": 290947
+      },
+      {
+        "title": "Club Zero",
+        "slug": "club-zero",
+        "rating": 2.89,
+        "count": 20488
+      },
+      {
+        "title": "Fallen Leaves",
+        "slug": "fallen-leaves-2023",
+        "rating": 3.79,
+        "count": 208935
+      },
+      {
+        "title": "Firebrand",
+        "slug": "firebrand-2023",
+        "rating": 3.19,
+        "count": 22762
+      },
+      {
+        "title": "Four Daughters",
+        "slug": "four-daughters-2023",
+        "rating": 4.0,
+        "count": 29197
+      },
+      {
+        "title": "Homecoming",
+        "slug": "homecoming-2023",
+        "rating": 3.25,
+        "count": 2371
+      },
+      {
+        "title": "Kidnapped",
+        "slug": "kidnapped-2023",
+        "rating": 3.54,
+        "count": 17870
+      },
+      {
+        "title": "Last Summer",
+        "slug": "last-summer-2023",
+        "rating": 3.34,
+        "count": 29420
+      },
+      {
+        "title": "May December",
+        "slug": "may-december",
+        "rating": 3.64,
+        "count": 623025
+      },
+      {
+        "title": "Monster",
+        "slug": "monster-2023",
+        "rating": 4.34,
+        "count": 416824
+      },
+      {
+        "title": "The Old Oak",
+        "slug": "the-old-oak",
+        "rating": 3.55,
+        "count": 41755
+      },
+      {
+        "title": "Perfect Days",
+        "slug": "perfect-days-2023",
+        "rating": 4.31,
+        "count": 789906
+      },
+      {
+        "title": "The Taste of Things",
+        "slug": "the-taste-of-things",
+        "rating": 3.96,
+        "count": 94508
+      },
+      {
+        "title": "Youth (Spring)",
+        "slug": "youth-spring",
+        "rating": 3.78,
+        "count": 4168
+      },
+      {
+        "title": "The Zone of Interest",
+        "slug": "the-zone-of-interest",
+        "rating": 3.86,
+        "count": 939696
+      }
+    ]
+  },
+  "2024": {
+    "films": [
+      {
+        "title": "Kinds of Kindness",
+        "slug": "kinds-of-kindness",
+        "rating": 3.31,
+        "count": 523199
+      },
+      {
+        "title": "Megalopolis",
+        "slug": "megalopolis-2024",
+        "rating": 2.29,
+        "count": 286483
+      },
+      {
+        "title": "The Shrouds",
+        "slug": "the-shrouds",
+        "rating": 2.99,
+        "count": 68900
+      },
+      {
+        "title": "All We Imagine as Light",
+        "slug": "all-we-imagine-as-light",
+        "rating": 3.87,
+        "count": 101972
+      },
+      {
+        "title": "Anora",
+        "slug": "anora",
+        "rating": 3.79,
+        "count": 2386339
+      },
+      {
+        "title": "The Apprentice",
+        "slug": "the-apprentice-2024",
+        "rating": 3.62,
+        "count": 387981
+      },
+      {
+        "title": "Beating Hearts",
+        "slug": "beating-hearts-2024",
+        "rating": 3.61,
+        "count": 235674
+      },
+      {
+        "title": "Bird",
+        "slug": "bird-2024",
+        "rating": 3.73,
+        "count": 111819
+      },
+      {
+        "title": "Caught by the Tides",
+        "slug": "caught-by-the-tides",
+        "rating": 3.68,
+        "count": 22682
+      },
+      {
+        "title": "Emilia Pérez",
+        "slug": "emilia-perez",
+        "rating": 2.01,
+        "count": 605407
+      },
+      {
+        "title": "Grand Tour",
+        "slug": "grand-tour-2024",
+        "rating": 3.36,
+        "count": 19855
+      },
+      {
+        "title": "Limonov: The Ballad",
+        "slug": "limonov-the-ballad",
+        "rating": 3.03,
+        "count": 9073
+      },
+      {
+        "title": "Motel Destino",
+        "slug": "motel-destino",
+        "rating": 3.23,
+        "count": 40618
+      },
+      {
+        "title": "Oh, Canada",
+        "slug": "oh-canada",
+        "rating": 2.95,
+        "count": 24445
+      },
+      {
+        "title": "Parthenope",
+        "slug": "parthenope",
+        "rating": 3.06,
+        "count": 120605
+      },
+      {
+        "title": "The Girl with the Needle",
+        "slug": "the-girl-with-the-needle",
+        "rating": 3.9,
+        "count": 123761
+      },
+      {
+        "title": "Marcello Mio",
+        "slug": "marcello-mio",
+        "rating": 2.9,
+        "count": 7760
+      },
+      {
+        "title": "The Substance",
+        "slug": "the-substance",
+        "rating": 3.73,
+        "count": 3415363
+      },
+      {
+        "title": "Wild Diamond",
+        "slug": "wild-diamond",
+        "rating": 3.24,
+        "count": 24761
+      }
+    ]
+  },
+  "2025": {
+    "films": [
+      {
+        "title": "It Was Just an Accident",
+        "slug": "it-was-just-an-accident",
+        "rating": 3.97,
+        "count": 295808
+      },
+      {
+        "title": "Sentimental Value",
+        "slug": "sentimental-value-2025",
+        "rating": 4.16,
+        "count": 873686
+      },
+      {
+        "title": "Romería",
+        "slug": "romeria",
+        "rating": 3.6,
+        "count": 32670
+      },
+      {
+        "title": "Sound of Falling",
+        "slug": "sound-of-falling",
+        "rating": 3.69,
+        "count": 37775
+      },
+      {
+        "title": "Eagles of the Republic",
+        "slug": "eagles-of-the-republic",
+        "rating": 3.33,
+        "count": 10026
+      },
+      {
+        "title": "The Mastermind",
+        "slug": "the-mastermind-2025",
+        "rating": 3.22,
+        "count": 160836
+      },
+      {
+        "title": "Case 137",
+        "slug": "case-137-2025",
+        "rating": 3.52,
+        "count": 27637
+      },
+      {
+        "title": "The Secret Agent",
+        "slug": "the-secret-agent-2025",
+        "rating": 3.81,
+        "count": 585110
+      },
+      {
+        "title": "Fuori",
+        "slug": "fuori-2025",
+        "rating": 3.03,
+        "count": 8105
+      },
+      {
+        "title": "Two Prosecutors",
+        "slug": "two-prosecutors",
+        "rating": 3.43,
+        "count": 10043
+      },
+      {
+        "title": "Nouvelle Vague",
+        "slug": "nouvelle-vague-2025",
+        "rating": 3.71,
+        "count": 99563
+      },
+      {
+        "title": "Sirāt",
+        "slug": "sirat-2025",
+        "rating": 3.56,
+        "count": 275033
+      },
+      {
+        "title": "The Little Sister",
+        "slug": "the-little-sister-2025",
+        "rating": 3.46,
+        "count": 35444
+      },
+      {
+        "title": "The History of Sound",
+        "slug": "the-history-of-sound",
+        "rating": 3.37,
+        "count": 82155
+      },
+      {
+        "title": "Renoir",
+        "slug": "renoir-2025",
+        "rating": 3.38,
+        "count": 7093
+      },
+      {
+        "title": "Alpha",
+        "slug": "alpha-2025",
+        "rating": 3.26,
+        "count": 43569
+      },
+      {
+        "title": "Young Mothers",
+        "slug": "young-mothers",
+        "rating": 3.42,
+        "count": 12711
+      },
+      {
+        "title": "Eddington",
+        "slug": "eddington",
+        "rating": 3.36,
+        "count": 491688
+      },
+      {
+        "title": "The Phoenician Scheme",
+        "slug": "the-phoenician-scheme",
+        "rating": 3.53,
+        "count": 666574
+      }
+    ]
+  }
+}

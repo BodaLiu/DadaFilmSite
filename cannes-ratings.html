@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannes Ratings · DADA FILM SITE</title>
+<meta name="description" content="A year-by-year view of Letterboxd ratings for films in the Cannes main competition.">
+<style>
+  :root {
+    --bg: #f4ecdf;
+    --panel: rgba(255, 251, 245, 0.88);
+    --text: #1f2933;
+    --muted: #5c6774;
+    --accent: #9a6120;
+    --accent-deep: #24384a;
+    --border: rgba(31, 41, 55, 0.1);
+    --shadow: 0 24px 60px rgba(74, 53, 27, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(154, 97, 32, 0.16), transparent 26%),
+      radial-gradient(circle at bottom right, rgba(36, 56, 74, 0.14), transparent 30%),
+      linear-gradient(135deg, #f8f2e7 0%, #ede1cf 100%);
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 34px 24px 64px;
+  }
+
+  .site-nav {
+    margin-bottom: 26px;
+  }
+
+  .site-nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 9px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255, 251, 245, 0.72);
+  }
+
+  .hero {
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+  }
+
+  .intro {
+    max-width: 860px;
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+  }
+
+  .ranking-panel {
+    padding: 24px;
+  }
+
+  .chart-panel {
+    padding: 24px;
+    margin-bottom: 22px;
+  }
+
+  .detail-panel {
+    padding: 24px;
+    position: sticky;
+    top: 20px;
+  }
+
+  .panel-title {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+  }
+
+  .panel-copy {
+    margin: 10px 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 22px 0 24px;
+  }
+
+  .stat {
+    background: rgba(255,255,255,0.58);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-sub {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  #boxplot-chart {
+    width: 100%;
+    min-height: 420px;
+    position: relative;
+  }
+
+  .boxplot-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .boxplot-year {
+    cursor: pointer;
+  }
+
+  .boxplot-hit-area {
+    fill: transparent;
+  }
+
+  .scatter-point {
+    fill: rgba(154, 97, 32, 0.42);
+    transition: fill 120ms ease, r 120ms ease;
+    pointer-events: auto;
+  }
+
+  .scatter-point:hover {
+    fill: rgba(180, 75, 58, 0.82);
+  }
+
+  .chart-tooltip {
+    position: absolute;
+    inset: auto auto 0 0;
+    transform: translate(-50%, calc(-100% - 10px));
+    width: 112px;
+    height: 34px;
+    padding: 4px 6px;
+    border-radius: 8px;
+    background: rgba(31, 41, 55, 0.94);
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.2;
+    box-shadow: 0 18px 40px rgba(31, 41, 55, 0.22);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 120ms ease;
+    z-index: 3;
+    overflow: hidden;
+  }
+
+  .chart-tooltip.is-visible {
+    opacity: 1;
+  }
+
+  .chart-tooltip strong {
+    display: block;
+    font-size: 10px;
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chart-tooltip span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .boxplot-year.is-active .box {
+    fill: rgba(180, 75, 58, 0.34);
+    stroke: #b44b3a;
+    stroke-width: 2;
+  }
+
+  .boxplot-year.is-active .median,
+  .boxplot-year.is-active .whisker,
+  .boxplot-year.is-active .cap {
+    stroke: #b44b3a;
+    stroke-width: 2;
+  }
+
+  .boxplot-year.is-active .year-label {
+    fill: #b44b3a;
+    font-weight: 700;
+  }
+
+  .year-label,
+  .boxplot-hit-area {
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+    text-align: left;
+    font-size: 14px;
+    vertical-align: top;
+  }
+
+  th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  .year-button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--accent-deep);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .year-button:hover,
+  .year-button:focus-visible {
+    color: var(--accent);
+  }
+
+  .year-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .year-header h2 {
+    margin: 0;
+    font-size: 44px;
+    letter-spacing: -0.05em;
+  }
+
+  .year-rank {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 18px 0 20px;
+  }
+
+  .detail-card {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.58);
+    border: 1px solid var(--border);
+  }
+
+  .detail-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .detail-value {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .film-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .film-item {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.54);
+    border: 1px solid var(--border);
+  }
+
+  .film-rank {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .film-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .film-meta {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .film-link {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: var(--accent-deep);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .note {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .overview {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-panel {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .page {
+      padding: 24px 16px 48px;
+    }
+
+    .stats,
+    .detail-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .overview {
+      grid-template-columns: 1fr;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <div class="site-nav">
+      <a href="./index.html">dada home</a>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Letterboxd Data</div>
+      <h1>Cannes Main Competition Ratings</h1>
+      <p class="intro">This page presents a year-by-year view of Letterboxd ratings for films in the Cannes main competition.</p>
+    </section>
+
+    <section class="overview">
+      <div class="stat">
+        <div class="stat-label">Highest Mean Year</div>
+        <div class="stat-value" id="overview-best-year">-</div>
+        <div class="stat-sub" id="overview-best-year-copy"></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Lowest Mean Year</div>
+        <div class="stat-value" id="overview-worst-year">-</div>
+        <div class="stat-sub" id="overview-worst-year-copy"></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Widest Range</div>
+        <div class="stat-value" id="overview-range-year">-</div>
+        <div class="stat-sub" id="overview-range-copy"></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Highest Rated Film</div>
+        <div class="stat-value" id="overview-top-film">-</div>
+        <div class="stat-sub" id="overview-top-film-copy"></div>
+      </div>
+    </section>
+
+    <section class="panel chart-panel">
+      <h2 class="panel-title">Ratings Distribution by Year</h2>
+      <p class="panel-copy">The box plot shows the rating distribution for each Cannes main competition lineup, while the red line tracks the yearly mean score.</p>
+      <div id="boxplot-chart"></div>
+    </section>
+
+    <section class="layout">
+      <div class="panel ranking-panel">
+        <h2 class="panel-title">Yearly Ranking</h2>
+        <p class="panel-copy">Select any year to view its mean rating, median rating, competition size, highest-rated title, and lowest-rated title. The 2020 edition is excluded because there was no regular main competition lineup.</p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Years Covered</div>
+            <div class="stat-value" id="stat-years">-</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Films Counted</div>
+            <div class="stat-value" id="stat-films">-</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Overall Mean Rating</div>
+            <div class="stat-value" id="stat-top-mean">-</div>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Year</th>
+              <th>Mean</th>
+              <th>Palme d'Or</th>
+            </tr>
+          </thead>
+          <tbody id="ranking-body"></tbody>
+        </table>
+      </div>
+
+      <aside class="panel detail-panel">
+        <div class="year-header">
+          <h2 id="detail-year">-</h2>
+          <div class="year-rank" id="detail-rank"></div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-card">
+            <div class="detail-label">Mean Rating</div>
+            <div class="detail-value" id="detail-mean">-</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-label">Median Rating</div>
+            <div class="detail-value" id="detail-median">-</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-label">Films Counted</div>
+            <div class="detail-value" id="detail-count">-</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-label">Rating Range</div>
+            <div class="detail-value" id="detail-range">-</div>
+          </div>
+        </div>
+
+        <div class="film-list" id="film-list"></div>
+
+        <div class="note">These figures reflect Letterboxd user ratings collected on April 7, 2026. They are intended as an audience-response snapshot rather than an official festival assessment.</div>
+      </aside>
+    </section>
+  </main>
+
+  <script id="ratings-data" type="application/json">{"2016":{"films":[{"title":"I, Daniel Blake","slug":"i-daniel-blake","rating":4.04,"count":88560},{"title":"American Honey","slug":"american-honey","rating":3.77,"count":146091},{"title":"Aquarius","slug":"aquarius","rating":3.98,"count":60377},{"title":"Elle","slug":"elle","rating":3.7,"count":94276},{"title":"From the Land of the Moon","slug":"from-the-land-of-the-moon","rating":3.32,"count":4722},{"title":"Graduation","slug":"graduation-2016","rating":3.74,"count":13767},{"title":"The Handmaiden","slug":"the-handmaiden","rating":4.39,"count":771854},{"title":"It&#039;s Only the End of the World","slug":"its-only-the-end-of-the-world","rating":3.58,"count":64266},{"title":"Julieta","slug":"julieta","rating":3.62,"count":45529},{"title":"The Last Face","slug":"the-last-face","rating":2.27,"count":2557},{"title":"Loving","slug":"loving-2016","rating":3.53,"count":40263},{"title":"Ma&#039; Rosa","slug":"ma-rosa","rating":3.5,"count":2718},{"title":"The Neon Demon","slug":"the-neon-demon","rating":3.14,"count":302496},{"title":"Paterson","slug":"paterson","rating":3.88,"count":224785},{"title":"Personal Shopper","slug":"personal-shopper","rating":3.38,"count":102744},{"title":"The Salesman","slug":"the-salesman-2016","rating":3.84,"count":59173},{"title":"Sieranevada","slug":"sieranevada","rating":3.91,"count":6432},{"title":"Slack Bay","slug":"slack-bay","rating":3.28,"count":7881},{"title":"Staying Vertical","slug":"staying-vertical","rating":3.4,"count":4767},{"title":"Toni Erdmann","slug":"toni-erdmann","rating":3.96,"count":72870},{"title":"The Unknown Girl","slug":"the-unknown-girl","rating":3.39,"count":17416}]},"2017":{"films":[{"title":"The Square","slug":"the-square-2017","rating":3.62,"count":142014},{"title":"BPM (Beats per Minute)","slug":"bpm-beats-per-minute","rating":3.99,"count":60894},{"title":"Double Lover","slug":"double-lover","rating":3.1,"count":17060},{"title":"The Beguiled","slug":"the-beguiled-2017","rating":3.34,"count":180114},{"title":"The Day After","slug":"the-day-after-2017","rating":3.72,"count":9463},{"title":"A Gentle Creature","slug":"a-gentle-creature-2017","rating":3.4,"count":1969},{"title":"Good Time","slug":"good-time","rating":3.98,"count":760749},{"title":"Happy End","slug":"happy-end-2017","rating":3.46,"count":29239},{"title":"In the Fade","slug":"in-the-fade","rating":3.6,"count":31039},{"title":"Jupiter&#039;s Moon","slug":"jupiters-moon-2017","rating":3.16,"count":3084},{"title":"The Killing of a Sacred Deer","slug":"the-killing-of-a-sacred-deer","rating":3.7,"count":796495},{"title":"Loveless","slug":"loveless-2017","rating":3.91,"count":44285},{"title":"The Meyerowitz Stories (New and Selected)","slug":"the-meyerowitz-stories-new-and-selected","rating":3.74,"count":153987},{"title":"Okja","slug":"okja","rating":3.71,"count":485655},{"title":"Radiance","slug":"radiance-2017","rating":3.43,"count":4240},{"title":"Godard Mon Amour","slug":"godard-mon-amour","rating":3.21,"count":17750},{"title":"Rodin","slug":"rodin","rating":2.71,"count":1462},{"title":"Wonderstruck","slug":"wonderstruck","rating":3.27,"count":14987},{"title":"You Were Never Really Here","slug":"you-were-never-really-here","rating":3.68,"count":271687}]},"2018":{"films":[{"title":"Shoplifters","slug":"shoplifters","rating":4.3,"count":292203},{"title":"At War","slug":"at-war","rating":3.59,"count":3937},{"title":"Everybody Knows","slug":"everybody-knows","rating":3.35,"count":39124},{"title":"Dogman","slug":"dogman-2018","rating":3.75,"count":44512},{"title":"The Image Book","slug":"the-image-book","rating":3.44,"count":11489},{"title":"Sorry Angel","slug":"sorry-angel","rating":3.63,"count":10726},{"title":"Happy as Lazzaro","slug":"happy-as-lazzaro","rating":4.07,"count":83567},{"title":"Girls of the Sun","slug":"girls-of-the-sun","rating":3.36,"count":2614},{"title":"Ash Is Purest White","slug":"ash-is-purest-white","rating":3.82,"count":30651},{"title":"Capernaum","slug":"capernaum","rating":4.21,"count":127574},{"title":"Burning","slug":"burning-2018","rating":4.04,"count":314687},{"title":"BlacKkKlansman","slug":"blackkklansman","rating":3.94,"count":1146864},{"title":"Under the Silver Lake","slug":"under-the-silver-lake","rating":3.44,"count":273327},{"title":"3 Faces","slug":"3-faces","rating":3.59,"count":10740},{"title":"Cold War","slug":"cold-war-2018","rating":4.05,"count":177867},{"title":"Yomeddine","slug":"yomeddine","rating":3.59,"count":2214},{"title":"Leto","slug":"leto","rating":3.8,"count":18931},{"title":"Asako I &amp; II","slug":"asako-i-ii","rating":3.81,"count":37081}]},"2019":{"films":[{"title":"Parasite","slug":"parasite-2019","rating":4.53,"count":5224302},{"title":"Young Ahmed","slug":"young-ahmed","rating":3.25,"count":9565},{"title":"The Wild Goose Lake","slug":"the-wild-goose-lake","rating":3.58,"count":23774},{"title":"The Traitor","slug":"the-traitor-2019","rating":3.66,"count":25365},{"title":"Pain and Glory","slug":"pain-and-glory","rating":4.06,"count":164357},{"title":"Sorry We Missed You","slug":"sorry-we-missed-you","rating":3.96,"count":48500},{"title":"Sibyl","slug":"sibyl","rating":3.32,"count":43805},{"title":"Portrait of a Lady on Fire","slug":"portrait-of-a-lady-on-fire","rating":4.42,"count":1065456},{"title":"Once Upon a Time... in Hollywood","slug":"once-upon-a-time-in-hollywood","rating":3.77,"count":3014875},{"title":"Oh Mercy","slug":"oh-mercy","rating":3.22,"count":6262},{"title":"Mektoub, My Love: Intermezzo","slug":"mektoub-my-love-intermezzo","rating":2.99,"count":678},{"title":"Matthias &amp; Maxime","slug":"matthias-maxime","rating":3.66,"count":70823},{"title":"Little Joe","slug":"little-joe-2019","rating":2.99,"count":20281},{"title":"Les Misérables","slug":"les-miserables-2019","rating":3.82,"count":84283},{"title":"It Must Be Heaven","slug":"it-must-be-heaven","rating":3.71,"count":14557},{"title":"A Hidden Life","slug":"a-hidden-life-2019","rating":4.07,"count":73015},{"title":"The Whistlers","slug":"the-whistlers","rating":3.26,"count":8678},{"title":"Frankie","slug":"frankie-2019","rating":2.97,"count":3865},{"title":"The Dead Don&#039;t Die","slug":"the-dead-dont-die-2019","rating":2.62,"count":230836},{"title":"Bacurau","slug":"bacurau","rating":3.92,"count":178224},{"title":"Atlantics","slug":"atlantics-2019","rating":3.69,"count":45247}]},"2020":{"films":[]},"2021":{"films":[{"title":"Titane","slug":"titane","rating":3.56,"count":421630},{"title":"The Worst Person in the World","slug":"the-worst-person-in-the-world","rating":4.08,"count":927699},{"title":"Drive My Car","slug":"drive-my-car","rating":4.2,"count":375473},{"title":"Paris, 13th District","slug":"paris-13th-district","rating":3.57,"count":48925},{"title":"Red Rocket","slug":"red-rocket-2021","rating":3.83,"count":207073},{"title":"A Hero","slug":"a-hero","rating":3.78,"count":44957},{"title":"The French Dispatch of the Liberty, Kansas Evening Sun","slug":"the-french-dispatch-of-the-liberty-kansas","rating":3.66,"count":975334},{"title":"Compartment No. 6","slug":"compartment-no-6","rating":3.82,"count":49538},{"title":"Annette","slug":"annette","rating":3.38,"count":122479},{"title":"The Divide","slug":"the-divide-2021-1","rating":3.54,"count":6933},{"title":"Bergman Island","slug":"bergman-island-2021","rating":3.6,"count":52206},{"title":"Memoria","slug":"memoria-2021","rating":3.78,"count":66563},{"title":"The Restless","slug":"the-restless-2021","rating":3.45,"count":4095},{"title":"Benedetta","slug":"benedetta","rating":3.4,"count":114015},{"title":"Nitram","slug":"nitram","rating":3.67,"count":33964},{"title":"Everything Went Fine","slug":"everything-went-fine","rating":3.42,"count":5653},{"title":"Petrov&#039;s Flu","slug":"petrovs-flu","rating":3.69,"count":11408},{"title":"Lingui, the Sacred Bonds","slug":"lingui-the-sacred-bonds","rating":3.57,"count":5615},{"title":"Casablanca Beats","slug":"casablanca-beats","rating":2.92,"count":1980},{"title":"Ahed&#039;s Knee","slug":"aheds-knee","rating":3.36,"count":5184}]},"2022":{"films":[{"title":"Triangle of Sadness","slug":"triangle-of-sadness","rating":3.69,"count":886801},{"title":"Armageddon Time","slug":"armageddon-time","rating":3.37,"count":59632},{"title":"Cairo Conspiracy","slug":"cairo-conspiracy","rating":3.57,"count":24169},{"title":"Broker","slug":"broker-2022","rating":3.78,"count":102924},{"title":"Brother and Sister","slug":"brother-and-sister-2022","rating":2.65,"count":4932},{"title":"Close","slug":"close-2022","rating":4.13,"count":491883},{"title":"Crimes of the Future","slug":"crimes-of-the-future-2022","rating":3.29,"count":222228},{"title":"Decision to Leave","slug":"decision-to-leave","rating":3.98,"count":393902},{"title":"The Eight Mountains","slug":"the-eight-mountains","rating":4.11,"count":59923},{"title":"EO","slug":"eo","rating":3.57,"count":91639},{"title":"Forever Young","slug":"forever-young-2022","rating":3.5,"count":15637},{"title":"Holy Spider","slug":"holy-spider","rating":3.62,"count":89603},{"title":"Leila&#039;s Brothers","slug":"leilas-brothers","rating":3.46,"count":30752},{"title":"Mother and Son","slug":"mother-and-son-2022","rating":3.41,"count":2026},{"title":"Nostalgia","slug":"nostalgia-2022-1","rating":3.36,"count":9969},{"title":"Pacifiction","slug":"pacifiction","rating":3.64,"count":22661},{"title":"R.M.N.","slug":"rmn","rating":3.76,"count":15967},{"title":"Showing Up","slug":"showing-up-2022","rating":3.52,"count":55899},{"title":"Stars at Noon","slug":"stars-at-noon","rating":2.98,"count":20541},{"title":"Tchaikovsky&#039;s Wife","slug":"tchaikovskys-wife","rating":3.41,"count":9121},{"title":"Tori and Lokita","slug":"tori-and-lokita","rating":3.57,"count":9896}]},"2023":{"films":[{"title":"Anatomy of a Fall","slug":"anatomy-of-a-fall","rating":4.12,"count":1447428},{"title":"About Dry Grasses","slug":"about-dry-grasses","rating":4.02,"count":57212},{"title":"Asteroid City","slug":"asteroid-city","rating":3.47,"count":1077995},{"title":"Banel &amp; Adama","slug":"banel-adama","rating":3.35,"count":4202},{"title":"Asphalt City","slug":"asphalt-city","rating":3.04,"count":10939},{"title":"A Brighter Tomorrow","slug":"a-brighter-tomorrow-2023","rating":3.5,"count":25298},{"title":"La Chimera","slug":"la-chimera","rating":4.09,"count":290947},{"title":"Club Zero","slug":"club-zero","rating":2.89,"count":20488},{"title":"Fallen Leaves","slug":"fallen-leaves-2023","rating":3.79,"count":208935},{"title":"Firebrand","slug":"firebrand-2023","rating":3.19,"count":22762},{"title":"Four Daughters","slug":"four-daughters-2023","rating":4.0,"count":29197},{"title":"Homecoming","slug":"homecoming-2023","rating":3.25,"count":2371},{"title":"Kidnapped","slug":"kidnapped-2023","rating":3.54,"count":17870},{"title":"Last Summer","slug":"last-summer-2023","rating":3.34,"count":29420},{"title":"May December","slug":"may-december","rating":3.64,"count":623025},{"title":"Monster","slug":"monster-2023","rating":4.34,"count":416824},{"title":"The Old Oak","slug":"the-old-oak","rating":3.55,"count":41755},{"title":"Perfect Days","slug":"perfect-days-2023","rating":4.31,"count":789906},{"title":"The Taste of Things","slug":"the-taste-of-things","rating":3.96,"count":94508},{"title":"Youth (Spring)","slug":"youth-spring","rating":3.78,"count":4168},{"title":"The Zone of Interest","slug":"the-zone-of-interest","rating":3.86,"count":939696}]},"2024":{"films":[{"title":"Kinds of Kindness","slug":"kinds-of-kindness","rating":3.31,"count":523199},{"title":"Megalopolis","slug":"megalopolis-2024","rating":2.29,"count":286483},{"title":"The Shrouds","slug":"the-shrouds","rating":2.99,"count":68900},{"title":"All We Imagine as Light","slug":"all-we-imagine-as-light","rating":3.87,"count":101972},{"title":"Anora","slug":"anora","rating":3.79,"count":2386339},{"title":"The Apprentice","slug":"the-apprentice-2024","rating":3.62,"count":387981},{"title":"Beating Hearts","slug":"beating-hearts-2024","rating":3.61,"count":235674},{"title":"Bird","slug":"bird-2024","rating":3.73,"count":111819},{"title":"Caught by the Tides","slug":"caught-by-the-tides","rating":3.68,"count":22682},{"title":"Emilia Pérez","slug":"emilia-perez","rating":2.01,"count":605407},{"title":"Grand Tour","slug":"grand-tour-2024","rating":3.36,"count":19855},{"title":"Limonov: The Ballad","slug":"limonov-the-ballad","rating":3.03,"count":9073},{"title":"Motel Destino","slug":"motel-destino","rating":3.23,"count":40618},{"title":"Oh, Canada","slug":"oh-canada","rating":2.95,"count":24445},{"title":"Parthenope","slug":"parthenope","rating":3.06,"count":120605},{"title":"The Girl with the Needle","slug":"the-girl-with-the-needle","rating":3.9,"count":123761},{"title":"Marcello Mio","slug":"marcello-mio","rating":2.9,"count":7760},{"title":"The Substance","slug":"the-substance","rating":3.73,"count":3415363},{"title":"Wild Diamond","slug":"wild-diamond","rating":3.24,"count":24761}]},"2025":{"films":[{"title":"It Was Just an Accident","slug":"it-was-just-an-accident","rating":3.97,"count":295808},{"title":"Sentimental Value","slug":"sentimental-value-2025","rating":4.16,"count":873686},{"title":"Romería","slug":"romeria","rating":3.6,"count":32670},{"title":"Sound of Falling","slug":"sound-of-falling","rating":3.69,"count":37775},{"title":"Eagles of the Republic","slug":"eagles-of-the-republic","rating":3.33,"count":10026},{"title":"The Mastermind","slug":"the-mastermind-2025","rating":3.22,"count":160836},{"title":"Case 137","slug":"case-137-2025","rating":3.52,"count":27637},{"title":"The Secret Agent","slug":"the-secret-agent-2025","rating":3.81,"count":585110},{"title":"Fuori","slug":"fuori-2025","rating":3.03,"count":8105},{"title":"Two Prosecutors","slug":"two-prosecutors","rating":3.43,"count":10043},{"title":"Nouvelle Vague","slug":"nouvelle-vague-2025","rating":3.71,"count":99563},{"title":"Sirāt","slug":"sirat-2025","rating":3.56,"count":275033},{"title":"The Little Sister","slug":"the-little-sister-2025","rating":3.46,"count":35444},{"title":"The History of Sound","slug":"the-history-of-sound","rating":3.37,"count":82155},{"title":"Renoir","slug":"renoir-2025","rating":3.38,"count":7093},{"title":"Alpha","slug":"alpha-2025","rating":3.26,"count":43569},{"title":"Young Mothers","slug":"young-mothers","rating":3.42,"count":12711},{"title":"Eddington","slug":"eddington","rating":3.36,"count":491688},{"title":"The Phoenician Scheme","slug":"the-phoenician-scheme","rating":3.53,"count":666574}]}}</script>
+  <script>
+    const palmeWinners = {
+      2016: 'I, Daniel Blake',
+      2017: 'The Square',
+      2018: 'Shoplifters',
+      2019: 'Parasite',
+      2021: 'Titane',
+      2022: 'Triangle of Sadness',
+      2023: 'Anatomy of a Fall',
+      2024: 'Anora',
+      2025: 'It Was Just an Accident'
+    };
+
+    function round(value) {
+      return (Math.round(value * 100) / 100).toFixed(2);
+    }
+
+    function byRatingDesc(a, b) {
+      if (b.rating !== a.rating) return b.rating - a.rating;
+      return (b.count || 0) - (a.count || 0);
+    }
+
+    function byRatingAsc(a, b) {
+      if (a.rating !== b.rating) return a.rating - b.rating;
+      return (b.count || 0) - (a.count || 0);
+    }
+
+    function median(values) {
+      const sorted = [...values].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      if (sorted.length % 2 === 0) {
+        return (sorted[mid - 1] + sorted[mid]) / 2;
+      }
+      return sorted[mid];
+    }
+
+    function buildYearStats(data) {
+      return Object.entries(data)
+        .filter(([year]) => Number(year) !== 2020)
+        .map(([year, payload]) => {
+          const films = (payload.films || [])
+            .filter((film) => film.rating !== null && film.rating !== undefined)
+            .map((film) => ({
+              title: String(film.title || '').replaceAll('&#039;', "'"),
+              slug: film.slug,
+              rating: Number(film.rating),
+              count: Number(film.count || 0)
+            }));
+
+          const ratings = films.map((film) => film.rating);
+          const mean = ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
+          const topFilm = [...films].sort(byRatingDesc)[0];
+          const bottomFilm = [...films].sort(byRatingAsc)[0];
+          const topThree = [...films].sort(byRatingDesc).slice(0, 3);
+
+          return {
+            year: Number(year),
+            films,
+            filmCount: films.length,
+            meanRating: mean,
+            medianRating: median(ratings),
+            minRating: Math.min(...ratings),
+            maxRating: Math.max(...ratings),
+            palmeWinner: palmeWinners[Number(year)] || 'N/A',
+            topFilm,
+            bottomFilm,
+            topThree
+          };
+        })
+        .sort((a, b) => b.meanRating - a.meanRating || b.medianRating - a.medianRating || b.maxRating - a.maxRating)
+        .map((entry, index) => ({ ...entry, rank: index + 1 }));
+    }
+
+    function renderOverview(years) {
+      const bestYear = years[0];
+      const worstYear = years[years.length - 1];
+      const widestRange = [...years].sort((a, b) => (b.maxRating - b.minRating) - (a.maxRating - a.minRating))[0];
+      const topFilmOverall = years
+        .flatMap((year) => year.films.map((film) => ({ ...film, year: year.year })))
+        .sort(byRatingDesc)[0];
+
+      document.getElementById('overview-best-year').textContent = bestYear.year;
+      document.getElementById('overview-best-year-copy').textContent = `Mean ${round(bestYear.meanRating)} · median ${round(bestYear.medianRating)}`;
+
+      document.getElementById('overview-worst-year').textContent = worstYear.year;
+      document.getElementById('overview-worst-year-copy').textContent = `Mean ${round(worstYear.meanRating)} · median ${round(worstYear.medianRating)}`;
+
+      document.getElementById('overview-range-year').textContent = widestRange.year;
+      document.getElementById('overview-range-copy').textContent = `Range ${round(widestRange.minRating)} - ${round(widestRange.maxRating)}`;
+
+      document.getElementById('overview-top-film').textContent = topFilmOverall.title;
+      document.getElementById('overview-top-film-copy').textContent = `${topFilmOverall.year} · ${round(topFilmOverall.rating)}`;
+    }
+
+    function quantile(sortedValues, q) {
+      const position = (sortedValues.length - 1) * q;
+      const base = Math.floor(position);
+      const rest = position - base;
+      if (sortedValues[base + 1] !== undefined) {
+        return sortedValues[base] + rest * (sortedValues[base + 1] - sortedValues[base]);
+      }
+      return sortedValues[base];
+    }
+
+    function summarizeBoxplot(values) {
+      const sorted = [...values].sort((a, b) => a - b);
+      const q1 = quantile(sorted, 0.25);
+      const q2 = quantile(sorted, 0.5);
+      const q3 = quantile(sorted, 0.75);
+      const iqr = q3 - q1;
+      const lowerFence = q1 - 1.5 * iqr;
+      const upperFence = q3 + 1.5 * iqr;
+      const nonOutliers = sorted.filter((value) => value >= lowerFence && value <= upperFence);
+      const outliers = sorted.filter((value) => value < lowerFence || value > upperFence);
+
+      return {
+        q1,
+        q2,
+        q3,
+        min: nonOutliers[0],
+        max: nonOutliers[nonOutliers.length - 1],
+        outliers
+      };
+    }
+
+    function renderBoxplot(years) {
+      const chronologicalYears = [...years].sort((a, b) => a.year - b.year);
+      const container = document.getElementById('boxplot-chart');
+      const width = 1080;
+      const height = 432;
+      const margin = { top: 22, right: 24, bottom: 68, left: 58 };
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+      const yearLabelY = margin.top + innerHeight + 28;
+      const minValue = 2.0;
+      const maxValue = 4.6;
+
+      function yScale(value) {
+        const ratio = (value - minValue) / (maxValue - minValue);
+        return margin.top + innerHeight - (ratio * innerHeight);
+      }
+
+      function xCenter(index) {
+        return margin.left + ((index + 0.5) * innerWidth / chronologicalYears.length);
+      }
+
+      const boxWidth = Math.min(48, innerWidth / chronologicalYears.length * 0.46);
+      const summaries = chronologicalYears.map((entry) => ({
+        ...entry,
+        box: summarizeBoxplot(entry.films.map((film) => film.rating))
+      }));
+
+      const yTicks = [2.0, 2.5, 3.0, 3.5, 4.0, 4.5];
+      const gridLines = yTicks.map((tick) => `
+        <line x1="${margin.left}" y1="${yScale(tick)}" x2="${width - margin.right}" y2="${yScale(tick)}" stroke="rgba(31,41,55,0.08)" />
+        <text x="${margin.left - 10}" y="${yScale(tick) + 5}" text-anchor="end" font-size="12" fill="#5c6774">${tick.toFixed(1)}</text>
+      `).join('');
+
+      const meanPoints = summaries.map((entry, index) => `${xCenter(index)},${yScale(entry.meanRating)}`).join(' ');
+
+      function pointOffset(index, total) {
+        if (total <= 1) return 0;
+        const spread = Math.min(18, boxWidth * 0.72);
+        const normalized = (index / (total - 1)) - 0.5;
+        return normalized * spread;
+      }
+
+      const yearGroups = summaries.map((entry, index) => {
+        const cx = xCenter(index);
+        const q1 = yScale(entry.box.q1);
+        const q2 = yScale(entry.box.q2);
+        const q3 = yScale(entry.box.q3);
+        const min = yScale(entry.box.min);
+        const max = yScale(entry.box.max);
+        const scatterPoints = entry.films.map((film, filmIndex) => `
+          <circle
+            class="scatter-point"
+            cx="${cx + pointOffset(filmIndex, entry.films.length)}"
+            cy="${yScale(film.rating)}"
+            r="3.4"
+            data-title="${film.title.replace(/"/g, '&quot;')}"
+            data-rating="${round(film.rating)}"
+          ></circle>
+        `).join('');
+
+        return `
+          <g class="boxplot-year" data-year="${entry.year}">
+            <rect class="boxplot-hit-area" x="${cx - boxWidth / 1.4}" y="${margin.top}" width="${boxWidth * 1.4}" height="${innerHeight}" />
+            <line class="whisker" x1="${cx}" y1="${max}" x2="${cx}" y2="${q3}" stroke="#7f8c8d" stroke-width="1.5" />
+            <line class="whisker" x1="${cx}" y1="${q1}" x2="${cx}" y2="${min}" stroke="#7f8c8d" stroke-width="1.5" />
+            <line class="cap" x1="${cx - boxWidth * 0.22}" y1="${max}" x2="${cx + boxWidth * 0.22}" y2="${max}" stroke="#7f8c8d" stroke-width="1.5" />
+            <line class="cap" x1="${cx - boxWidth * 0.22}" y1="${min}" x2="${cx + boxWidth * 0.22}" y2="${min}" stroke="#7f8c8d" stroke-width="1.5" />
+            <rect class="box" x="${cx - boxWidth / 2}" y="${q3}" width="${boxWidth}" height="${Math.max(2, q1 - q3)}" fill="rgba(76, 120, 168, 0.45)" stroke="#7f8c8d" stroke-width="1.5" rx="2" />
+            <line class="median" x1="${cx - boxWidth / 2}" y1="${q2}" x2="${cx + boxWidth / 2}" y2="${q2}" stroke="#24384a" stroke-width="2" />
+            ${scatterPoints}
+            <text class="year-label" x="${cx}" y="${yearLabelY}" text-anchor="middle" font-size="12" fill="#5c6774" transform="rotate(-35 ${cx} ${yearLabelY})">${entry.year}</text>
+          </g>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="chart-tooltip" id="chart-tooltip"></div>
+        <svg class="boxplot-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Cannes ratings boxplot by year">
+          ${gridLines}
+          <line x1="${margin.left}" y1="${margin.top + innerHeight}" x2="${width - margin.right}" y2="${margin.top + innerHeight}" stroke="rgba(31,41,55,0.12)" />
+          <line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + innerHeight}" stroke="rgba(31,41,55,0.12)" />
+          <polyline points="${meanPoints}" fill="none" stroke="#b44b3a" stroke-width="2.5" />
+          ${summaries.map((entry, index) => `
+            <circle cx="${xCenter(index)}" cy="${yScale(entry.meanRating)}" r="4.2" fill="#b44b3a" />
+          `).join('')}
+          ${yearGroups}
+          <text x="${18}" y="${margin.top + innerHeight / 2}" transform="rotate(-90 18 ${margin.top + innerHeight / 2})" font-size="13" fill="#1f2933">Letterboxd Rating</text>
+          <text x="${width / 2}" y="${height - 10}" text-anchor="middle" font-size="13" fill="#1f2933">Year</text>
+        </svg>
+      `;
+
+      const tooltip = container.querySelector('#chart-tooltip');
+
+      function hideTooltip() {
+        tooltip.classList.remove('is-visible');
+      }
+
+      container.querySelectorAll('.scatter-point').forEach((point) => {
+        point.addEventListener('mouseenter', () => {
+          tooltip.innerHTML = `<strong>${point.dataset.title}</strong><span>${point.dataset.rating}</span>`;
+          tooltip.classList.add('is-visible');
+        });
+
+        point.addEventListener('mousemove', (event) => {
+          const rect = container.getBoundingClientRect();
+          tooltip.style.left = `${event.clientX - rect.left}px`;
+          tooltip.style.top = `${event.clientY - rect.top}px`;
+        });
+
+        point.addEventListener('mouseleave', hideTooltip);
+      });
+
+      function activateYear(clickedYear) {
+        const selected = years.find((entry) => entry.year === clickedYear);
+        const selectedGroup = container.querySelector(`.boxplot-year[data-year="${clickedYear}"]`);
+        if (!selected || !selectedGroup) return;
+        renderDetail(selected);
+        container.querySelectorAll('.boxplot-year').forEach((node) => {
+          node.classList.toggle('is-active', node === selectedGroup);
+        });
+      }
+
+      container.querySelectorAll('.boxplot-hit-area, .box, .median, .whisker, .cap, .year-label').forEach((target) => {
+        target.addEventListener('click', () => {
+          const parentGroup = target.closest('.boxplot-year');
+          if (!parentGroup) return;
+          activateYear(Number(parentGroup.dataset.year));
+        });
+      });
+
+      const defaultYear = String(chronologicalYears[0].year);
+      const defaultGroup = container.querySelector(`.boxplot-year[data-year="${defaultYear}"]`);
+      if (defaultGroup) {
+        activateYear(Number(defaultYear));
+      }
+
+      container.addEventListener('mouseleave', hideTooltip);
+    }
+
+    function filmLink(slug) {
+      return `https://letterboxd.com/film/${slug}/`;
+    }
+
+    function renderDetail(entry) {
+      document.getElementById('detail-year').textContent = entry.year;
+      document.getElementById('detail-rank').textContent = `Mean rating rank #${entry.rank}`;
+      document.getElementById('detail-mean').textContent = round(entry.meanRating);
+      document.getElementById('detail-median').textContent = round(entry.medianRating);
+      document.getElementById('detail-count').textContent = entry.filmCount;
+      document.getElementById('detail-range').textContent = `${round(entry.minRating)} - ${round(entry.maxRating)}`;
+
+      const list = document.getElementById('film-list');
+      const best = entry.topFilm;
+      const worst = entry.bottomFilm;
+      const topThree = entry.topThree.map((film, index) => `
+        <div class="film-item">
+          <div class="film-rank">Top ${index + 1}</div>
+          <div class="film-title">${film.title}</div>
+          <div class="film-meta">Rating ${round(film.rating)} · ${film.count.toLocaleString()} logs</div>
+          <a class="film-link" href="${filmLink(film.slug)}" target="_blank" rel="noreferrer noopener">Open on Letterboxd</a>
+        </div>
+      `).join('');
+
+      list.innerHTML = `
+        <div class="film-item">
+          <div class="film-rank">Highest Rated</div>
+          <div class="film-title">${best.title}</div>
+          <div class="film-meta">Rating ${round(best.rating)} · ${best.count.toLocaleString()} logs</div>
+          <a class="film-link" href="${filmLink(best.slug)}" target="_blank" rel="noreferrer noopener">Open on Letterboxd</a>
+        </div>
+        <div class="film-item">
+          <div class="film-rank">Lowest Rated</div>
+          <div class="film-title">${worst.title}</div>
+          <div class="film-meta">Rating ${round(worst.rating)} · ${worst.count.toLocaleString()} logs</div>
+          <a class="film-link" href="${filmLink(worst.slug)}" target="_blank" rel="noreferrer noopener">Open on Letterboxd</a>
+        </div>
+        ${topThree}
+      `;
+    }
+
+    try {
+      const data = JSON.parse(document.getElementById('ratings-data').textContent);
+        const years = buildYearStats(data);
+        const rankingBody = document.getElementById('ranking-body');
+
+        renderOverview(years);
+        renderBoxplot(years);
+        document.getElementById('stat-years').textContent = years.length;
+        document.getElementById('stat-films').textContent = years.reduce((sum, entry) => sum + entry.filmCount, 0);
+        const allFilms = years.flatMap((entry) => entry.films);
+        const overallMeanRating = allFilms.reduce((sum, film) => sum + film.rating, 0) / allFilms.length;
+
+        document.getElementById('stat-top-mean').textContent = round(overallMeanRating);
+
+        rankingBody.innerHTML = years.map((entry) => `
+          <tr>
+            <td>${entry.rank}</td>
+            <td><button class="year-button" data-year="${entry.year}">${entry.year}</button></td>
+            <td>${round(entry.meanRating)}</td>
+            <td>${entry.palmeWinner}</td>
+          </tr>
+        `).join('');
+
+        rankingBody.addEventListener('click', (event) => {
+          const button = event.target.closest('.year-button');
+          if (!button) return;
+          const selected = years.find((entry) => entry.year === Number(button.dataset.year));
+          if (selected) renderDetail(selected);
+        });
+
+        renderDetail(years[0]);
+    } catch (error) {
+      document.getElementById('ranking-body').innerHTML = `
+        <tr><td colspan="4">Failed to load embedded ratings data</td></tr>
+      `;
+    }
+  </script>
+</body>
+</html>
