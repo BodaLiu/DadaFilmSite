@@ -997,46 +997,22 @@
   "2025": {
     "films": [
       {
-        "title": "It Was Just an Accident",
-        "slug": "it-was-just-an-accident",
-        "rating": 3.97,
-        "count": 295808
-      },
-      {
         "title": "Sentimental Value",
         "slug": "sentimental-value-2025",
         "rating": 4.16,
         "count": 873686
       },
       {
-        "title": "Romería",
-        "slug": "romeria",
-        "rating": 3.6,
-        "count": 32670
+        "title": "Resurrection",
+        "slug": "resurrection-2025",
+        "rating": 4.03,
+        "count": 50568
       },
       {
-        "title": "Sound of Falling",
-        "slug": "sound-of-falling",
-        "rating": 3.69,
-        "count": 37775
-      },
-      {
-        "title": "Eagles of the Republic",
-        "slug": "eagles-of-the-republic",
-        "rating": 3.33,
-        "count": 10026
-      },
-      {
-        "title": "The Mastermind",
-        "slug": "the-mastermind-2025",
-        "rating": 3.22,
-        "count": 160836
-      },
-      {
-        "title": "Case 137",
-        "slug": "case-137-2025",
-        "rating": 3.52,
-        "count": 27637
+        "title": "It Was Just an Accident",
+        "slug": "it-was-just-an-accident",
+        "rating": 3.97,
+        "count": 295808
       },
       {
         "title": "The Secret Agent",
@@ -1045,22 +1021,22 @@
         "count": 585110
       },
       {
-        "title": "Fuori",
-        "slug": "fuori-2025",
-        "rating": 3.03,
-        "count": 8105
-      },
-      {
-        "title": "Two Prosecutors",
-        "slug": "two-prosecutors",
-        "rating": 3.43,
-        "count": 10043
-      },
-      {
         "title": "Nouvelle Vague",
         "slug": "nouvelle-vague-2025",
         "rating": 3.71,
         "count": 99563
+      },
+      {
+        "title": "Sound of Falling",
+        "slug": "sound-of-falling",
+        "rating": 3.69,
+        "count": 37775
+      },
+      {
+        "title": "Romería",
+        "slug": "romeria",
+        "rating": 3.6,
+        "count": 32670
       },
       {
         "title": "Sirāt",
@@ -1069,28 +1045,28 @@
         "count": 275033
       },
       {
+        "title": "The Phoenician Scheme",
+        "slug": "the-phoenician-scheme",
+        "rating": 3.53,
+        "count": 666574
+      },
+      {
+        "title": "Case 137",
+        "slug": "case-137-2025",
+        "rating": 3.52,
+        "count": 27637
+      },
+      {
         "title": "The Little Sister",
         "slug": "the-little-sister-2025",
         "rating": 3.46,
         "count": 35444
       },
       {
-        "title": "The History of Sound",
-        "slug": "the-history-of-sound",
-        "rating": 3.37,
-        "count": 82155
-      },
-      {
-        "title": "Renoir",
-        "slug": "renoir-2025",
-        "rating": 3.38,
-        "count": 7093
-      },
-      {
-        "title": "Alpha",
-        "slug": "alpha-2025",
-        "rating": 3.26,
-        "count": 43569
+        "title": "Two Prosecutors",
+        "slug": "two-prosecutors",
+        "rating": 3.43,
+        "count": 10043
       },
       {
         "title": "Young Mothers",
@@ -1099,16 +1075,58 @@
         "count": 12711
       },
       {
+        "title": "Renoir",
+        "slug": "renoir-2025",
+        "rating": 3.38,
+        "count": 7093
+      },
+      {
+        "title": "The History of Sound",
+        "slug": "the-history-of-sound",
+        "rating": 3.37,
+        "count": 82155
+      },
+      {
         "title": "Eddington",
         "slug": "eddington",
         "rating": 3.36,
         "count": 491688
       },
       {
-        "title": "The Phoenician Scheme",
-        "slug": "the-phoenician-scheme",
-        "rating": 3.53,
-        "count": 666574
+        "title": "Eagles of the Republic",
+        "slug": "eagles-of-the-republic",
+        "rating": 3.33,
+        "count": 10026
+      },
+      {
+        "title": "Alpha",
+        "slug": "alpha-2025",
+        "rating": 3.26,
+        "count": 43569
+      },
+      {
+        "title": "The Mastermind",
+        "slug": "the-mastermind-2025",
+        "rating": 3.22,
+        "count": 160836
+      },
+      {
+        "title": "Die My Love",
+        "slug": "die-my-love",
+        "rating": 3.19,
+        "count": 440620
+      },
+      {
+        "title": "Fuori",
+        "slug": "fuori-2025",
+        "rating": 3.03,
+        "count": 8105
+      },
+      {
+        "title": "Woman and Child",
+        "slug": "woman-and-child",
+        "rating": 2.58,
+        "count": 4741
       }
     ]
   }

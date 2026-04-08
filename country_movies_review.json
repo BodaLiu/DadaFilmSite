@@ -944,7 +944,7 @@
       "rating": "1.00",
       "watched_date": "2023-06-23",
       "uri": "https://boxd.it/4pP6Pj",
-      "source_country": "China"
+      "source_country": "Thailand"
     },
     {
       "name": "Moonlight Sisters",
@@ -3980,6 +3980,14 @@
       "rating": "5.00",
       "watched_date": "2020-06-19",
       "uri": "https://boxd.it/3omKBr",
+      "source_country": "Mexico"
+    },
+    {
+      "name": "Pans Labyrinth",
+      "year": "2006",
+      "rating": "3.50",
+      "watched_date": "2018-06-03",
+      "uri": "https://letterboxd.com/film/pans-labyrinth/",
       "source_country": "Mexico"
     },
     {
